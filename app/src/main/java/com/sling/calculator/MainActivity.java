@@ -16,7 +16,7 @@ import android.widget.LinearLayout;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-
+//Button Information for grid Layout:
     private ArrayList<NumberButtonData> numberButtonData = new ArrayList<NumberButtonData>(){
         {
             add(new NumberButtonData("7", 1,0,1, NumberButtonData.ButtonType.INPUT));
@@ -40,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
 
         }
     };
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,12 +66,13 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
+//Generate Buttons:
         for(final NumberButtonData data:numberButtonData ){
             NumberButton button = new NumberButton(this, data,
                      new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+                            //Clear any errors in previous calculations.
                             if(text.getText().toString().equals("NaN") || text.getText().toString().contains("infinity")){
                                 text.setText("");
                             }
@@ -116,6 +119,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(mainLayout);
     }
 
+
+    //Will parse the given input into an expression and then solve it.
+    //@param expression: a string expression with double numbers and operators. Note: operators are surrounded by " ".
     public double evaluate (String expression){
         if(expression.equals("")) return 0;
         String[] splitExpression = expression.split(" ");
